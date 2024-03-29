@@ -1,0 +1,585 @@
+---
+title: "Figures"
+author: "Lin Zhang"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+Marmoset Paper figures
+# Fig1
+Fig1f heatmap of cell class specific markers in neonatal marmoest fovea
+```{r}
+Retina_cellclass_markers <- c("GNAT1","RHO","SAG", # Rod markers
+                              "GNAT2","ARR3","GNGT2",# Cone markers
+                              "ONECUT1","ONECUT2","LHX1","RET", # HC markers
+                              "VSX2","VSX1","GRM6","CABP5","TMEM215","CHTF18", # BC markers
+                              "SLC32A1","TFAP2A","TFAP2B","GAD1", # AC markers
+                              "RBPMS","SLC17A6",# RGC markers
+                              "APOE","SLC1A3","RLBP1","CRYAB" # MG markers
+                              )
+```
+
+```{r}
+P0_fovea <- readRDS("P0_Fovea.rds")
+```
+
+```{r}
+DoHeatmap(P0_fovea, features = Retina_cellclass_markers)
+```
+
+# Fig2
+## Fig2a dimplots of adult fovea atlas
+### PR
+```{r}
+(Adult_F_PR <- readRDS("Adult_Fovea_PR.rds"))
+```
+```{r}
+DimPlot(Adult_F_PR,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### HC
+```{r}
+(Adult_F_HC <- readRDS("Adult_Fovea_HC.rds"))
+```
+```{r}
+DimPlot(Adult_F_HC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### BC
+```{r}
+(Adult_F_BC <- readRDS("Adult_Fovea_BC.rds"))
+```
+```{r}
+DimPlot(Adult_F_BC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### AC
+```{r}
+(Adult_F_AC <- readRDS("Adult_Fovea_AC.rds"))
+```
+```{r}
+DimPlot(Adult_F_AC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### RGC
+```{r}
+(Adult_F_RGC <- readRDS("Adult_Fovea_RGC.rds"))
+```
+```{r}
+DimPlot(Adult_F_RGC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### Non neuronal cells
+```{r}
+(Adult_F_NN <- readRDS("Adult_Fovea_NN.rds"))
+```
+```{r}
+DimPlot(Adult_F_NN,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+## Fig2b dimplots of adult periphery cell atlas
+
+### PR
+```{r}
+(Adult_P_PR <- readRDS("Adult_Periphery_PR.rds"))
+```
+```{r}
+DimPlot(Adult_P_PR,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### HC
+```{r}
+(Adult_P_HC <- readRDS("Adult_Periphery_HC.rds"))
+```
+```{r}
+DimPlot(Adult_P_HC,reduction="umap",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### BC
+```{r}
+(Adult_P_BC <- readRDS("Adult_Periphery_BC.rds"))
+```
+```{r}
+DimPlot(Adult_P_BC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### AC
+```{r}
+(Adult_P_AC <- readRDS("Adult_Periphery_AC.rds"))
+```
+```{r}
+DimPlot(Adult_P_BC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### RGC
+```{r}
+(Adult_P_RGC <- readRDS("Adult_Periphery_RGC.rds"))
+```
+```{r}
+DimPlot(Adult_P_RGC,reduction="umap",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### Non neuronal cells
+```{r}
+(Adult_P_NN <- readRDS("Adult_Periphery_NN.rds"))
+```
+```{r}
+DimPlot(Adult_P_NN,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+## Fig2c dotplots of cell class- and type-specific markers
+
+#### cell class specific markers
+```{r}
+PR_Panmarker <- c("ARR3","GNAT1")  
+HC_Panmarker <- c("ONECUT1")   
+BC_Panmarker <- c("VSX2")     
+AC_Panmarker <- c("SLC32A1") 
+RGC_Panmarker <- c("RBPMS")
+MG_Panmarker <- c("VIM")
+```
+
+#### cell type specific markers
+```{r}
+# PR
+P0_F_PR <- readRDS(file= "P0_Fovea_PR.rds")
+MarkergeneHeatmap(data = P0_F_PR, output = P0_F_PR.markers, file = "P0_F_PR", ne = 3)
+
+# HC
+P0_F_HC <- readRDS(file= "P0_Fovea_HC.rds")
+MarkergeneHeatmap(data = P0_F_HC, output = P0_F_HC.markers, file = "P0_F_HC", ne = 3)
+
+# BC
+P0_F_BC <- readRDS(file= "P0_Fovea_BC.rds")
+MarkergeneHeatmap(data = P0_F_BC, output = P0_F_BC.markers, file = "P0_F_BC", ne = 3)
+
+# AC
+P0_F_AC <- readRDS(file= "P0_Fovea_AC.rds")
+MarkergeneHeatmap(data = P0_F_AC, output = P0_F_AC.markers, file = "P0_F_AC", ne = 3)
+
+# RGC
+P0_F_RGC <- readRDS(file = "P0_Fovea_RGC.rds")
+MarkergeneHeatmap(data = P0_F_RGC, output = P0_F_RGC.markers, file = "P0_F_RGC", ne = 3)
+
+# Non-neuronal cells
+P0_F_NN <- readRDS(file = "P0_Fovea_NN.rds")
+MarkergeneHeatmap(data = P0_F_NN, output = P0_F_NN.markers, file = "P0_F_NN", ne = 3)
+```
+
+#### dotplot
+```{r}
+## load identified marker genes P0_F_marker_genes
+load("P0_F_marker_genes.rda")
+
+## merge p0 fovea objects
+P0_F_Merged <- merge(P0_F_PR, y = c(P0_F_HC,P0_F_BC, P0_F_AC, P0_F_RGC, P0_F_NN), add.cell.ids=c("P0_F_PR","P0_F_HC", "P0_F_BC","P0_F_AC","P0_F_RGC", "P0_F_NN"),project="P0_F_Merged")
+
+## only MG of non-neuronal cells 
+P0_F_Merged <- subset(P0_F_Merged, idents = c("Pericyte","Microglia","Endothelial"), invert = TRUE)
+
+DotPlot(P0_F_Merged, features = P0_F_marker_genes, cols = c("white", "#08306B"),dot.scale = 12, col.min = 0, col.max = 2)+coord_flip()+ RotatedAxis()
+```
+
+# Fig3
+## Fig3a
+Circos from inner layer to outer layer
+### umap
+```{r}
+PrimateThree <- readRDS(file="PrimateThree_Integrated.rds")
+```
+
+```{r}
+DimPlot(PrimateThree,reduction="umap",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### dendrogram
+```{r}
+PrimateThree <- BuildClusterTree(PrimateThree,assay = "integrated",slot = "scale.data")
+```
+```{r,fig.height=5}
+data.tree <- Tool(object=PrimateThree_V2,slot='BuildClusterTree')
+plot.phylo(data.tree)
+```
+
+### dotplot
+```{r,fig.height=12,fig.width=15}
+(p1 <- DotPlot(PrimateThree,features = unique(PerCellClassTop3Markers),cols=c("white","red"),dot.scale = 8,split.by = "species")+RotatedAxis())
+```
+
+### barplot
+```{r}
+cellclass <- c("Non-neural","RGC","AC&HC","BC","PR")
+```
+
+```{r}
+prop_df$species <- as.factor(prop_df$species)
+```
+```{r}
+color <- c(1:3)
+```
+
+```{r}
+library(circlize)
+```
+
+```{r}
+circos.clear()
+circos.initialize(sectors = cellclass, xlim = XLIM)
+circos.track(ylim = c(0, 1), panel.fun = function(x, y) {
+    value = prop_df$Nor_prop[prop_df$cellclass==CELL_META$sector.index]
+    circos.barplot(value, col =as.integer(prop_df$species[prop_df$cellclass==CELL_META$sector.index]))
+})
+#1: black, human 2:red,macaque 3:green marmoset
+```
+
+## Fig3b
+```{r,fig.height=0.6,fig.width=4}
+pheatmap(Corr_Mat,cluster_rows = FALSE,cluster_cols = TRUE)
+```
+
+# Fig4
+## Fig4a dimplots of neonatal fovea atlas
+### PR
+```{r}
+(P0_F_PR <- readRDS("P0_Fovea_PR.rds"))
+```
+
+```{r}
+DimPlot(P0_F_PR,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### HC
+```{r}
+(P0_F_HC <- readRDS("P0_Fovea_HC.rds"))
+```
+
+```{r}
+DimPlot(P0_F_HC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### BC
+```{r}
+(P0_F_BC <- readRDS("P0_Fovea_BC.rds"))
+```
+
+```{r}
+DimPlot(P0_F_BC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### AC
+```{r}
+(P0_F_AC <- readRDS("P0_Fovea_AC.rds"))
+```
+
+```{r}
+DimPlot(P0_F_AC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### RGC
+```{r}
+(P0_F_RGC <- readRDS("P0_Fovea_RGC.rds"))
+```
+
+```{r}
+DimPlot(P0_F_RGC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### Non-neuronal
+```{r}
+(P0_F_NN <- readRDS("P0_Fovea_NN.rds"))
+```
+
+```{r}
+DimPlot(P0_F_NN,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+## Fig4b dimplots of neonatal periphery atlas
+### PR
+```{r}
+(P0_P_PR <- readRDS("P0_Periphery_PR.rds"))
+```
+
+```{r}
+DimPlot(P0_P_PR,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### HC
+```{r}
+(P0_P_HC <- readRDS("P0_Periphery_HC.rds"))
+```
+
+```{r}
+DimPlot(P0_P_HC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### BC
+```{r}
+(P0_P_BC <- readRDS("P0_Periphery_BC.rds"))
+```
+
+```{r}
+DimPlot(P0_P_BC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### AC
+```{r}
+(P0_P_AC <- readRDS("P0_Periphery_AC.rds"))
+```
+
+```{r}
+DimPlot(P0_P_AC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### RGC
+```{r}
+(P0_P_RGC <- readRDS("P0_Periphery_RGC.rds"))
+```
+
+```{r}
+DimPlot(P0_P_RGC,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+### Non neuronal cells
+```{r}
+(P0_P_NN <- readRDS("P0_Periphery_NN.rds"))
+```
+
+```{r}
+DimPlot(P0_P_NN,reduction="UMAP",label=TRUE,label.size=3,repel=TRUE)+NoLegend()
+```
+
+## Fig4c dotplots of cell class- and type-specific markers
+#### cell class specific markers
+```{r}
+PR_Panmarker <- c("ARR3","GNAT1")  
+HC_Panmarker <- c("ONECUT1")   
+BC_Panmarker <- c("VSX2")     
+AC_Panmarker <- c("SLC32A1") 
+RGC_Panmarker <- c("RBPMS")
+MG_Panmarker <- c("VIM")
+```
+
+#### cell type specific markers
+```{r}
+# PR
+Adult_F_PR <- readRDS(file= "Adult_Fovea_PR.rds")
+MarkergeneHeatmap(data = Adult_F_PR, output = Adult_F_PR.markers, file = "Adult_F_PR", ne = 3)
+
+# HC
+Adult_F_HC <- readRDS(file= "Adult_Fovea_HC.rds")
+MarkergeneHeatmap(data = Adult_F_HC, output = Adult_F_HC.markers, file = "Adult_F_HC", ne = 3)
+
+# BC
+Adult_F_BC <- readRDS(file= "Adult_Fovea_BC.rds")
+MarkergeneHeatmap(data = Adult_F_BC, output = Adult_F_BC.markers, file = "Adult_F_BC", ne = 3)
+
+# AC
+Adult_F_AC <- readRDS(file= "Adult_Fovea_AC.rds")
+MarkergeneHeatmap(data = Adult_F_AC, output = Adult_F_AC.markers, file = "Adult_F_AC", ne = 3)
+
+# RGC
+Adult_F_RGC <- readRDS(file = "Adult_Fovea_RGC.rds")
+MarkergeneHeatmap(data = Adult_F_RGC, output = Adult_F_RGC.markers, file = "Adult_F_RGC", ne = 3)
+
+# Non-neuronal cells
+Adult_F_NN <- readRDS(file = "Adult_Fovea_NN.rds")
+MarkergeneHeatmap(data = Adult_F_NN, output = Adult_F_NN.markers, file = "Adult_F_NN", ne = 3)
+```
+
+#### dotplot
+```{r}
+## load identified marker genes P0_F_marker_genes
+load("Adult_F_marker_genes.rda")
+
+## merge Adult fovea objects
+Adult_F_Merged <- merge(Adult_F_PR, y = c(Adult_F_HC,Adult_F_BC, Adult_F_AC, Adult_F_RGC, Adult_F_NN), add.cell.ids=c("Adult_F_PR","Adult_F_HC", "Adult_F_BC","Adult_F_AC","Adult_F_RGC", "Adult_F_NN"),project="Adult_F_Merged")
+
+## only MG of non-neuronal cells 
+Adult_F_Merged <- subset(Adult_F_Merged, idents = c("Pericyte","Microglia","Endothelial"), invert = TRUE)
+
+DotPlot(Adult_F_Merged, features = Adult_F_marker_genes, cols = c("white", "#08306B"),dot.scale = 12, col.min = 0, col.max = 2)+coord_flip()+ RotatedAxis()
+```
+
+# Fig5
+## Fig5a P0 Fovea to P0 Periphery
+```{r}
+library(circlize)
+```
+
+```{r,fig.height=8,fig.width=8}
+circos.clear()
+circos.par(start.degree = 90)
+
+chordDiagram(C,order = c(Fovea_order,rev(Per_order)),annotationTrackHeight = c(0.05,0.05),annotationTrack = "grid") 
+
+circos.track(track.index = 1, panel.fun = function(x, y) {
+    circos.text(CELL_META$xcenter, CELL_META$ylim[1],
+        facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5),cex = 0.4)
+}, bg.border = NA)
+```
+
+## Fig5b Adult Fovea to Adult Periphery
+```{r}
+library(circlize)
+```
+
+```{r,fig.height=8,fig.width=8}
+circos.clear()
+circos.par(start.degree = 90)
+
+chordDiagram(C,order = c(Fovea_order,rev(Per_order)),annotationTrackHeight = c(0.05,0.05),annotationTrack = "grid") 
+
+circos.track(track.index = 1, panel.fun = function(x, y) {
+    circos.text(CELL_META$xcenter, CELL_META$ylim[1],
+        facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5),cex = 0.4)
+}, bg.border = NA)
+```
+
+## Fig5c Neonatal Fovea to Adult Fovea
+```{r}
+library(circlize)
+```
+
+```{r,fig.height=8,fig.width=8}
+circos.clear()
+circos.par(start.degree = 90)
+
+chordDiagram(C,order = c(Adult_order,rev(P0_order)),annotationTrackHeight = c(0.05,0.05),annotationTrack = "grid") 
+
+circos.track(track.index = 1, panel.fun = function(x, y) {
+    circos.text(CELL_META$xcenter, CELL_META$ylim[1],
+        facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5),cex = 0.4)
+}, bg.border = NA)
+```
+
+## Fig5d Neonatal Periphery to Adult Periphery
+```{r}
+library(circlize)
+```
+
+```{r,fig.height=8,fig.width=8}
+circos.clear()
+circos.par(start.degree = 90)
+
+chordDiagram(C,order = c(Adult_order,rev(P0_order)),annotationTrackHeight = c(0.05,0.05),annotationTrack = "grid") 
+
+circos.track(track.index = 1, panel.fun = function(x, y) {
+    circos.text(CELL_META$xcenter, CELL_META$ylim[1],
+        facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5),cex = 0.4)
+}, bg.border = NA)
+```
+
+# Fig6
+## Fig6a
+```{r}
+(P0_F_P <- readRDS(file="P0_Fovea_and_Periphery.rds"))
+```
+```{r}
+FeaturePlot(P0_F_P,features=c("NES"),reduction = "UMAP",label = TRUE,repel = TRUE,max.cutoff = 25,label.size = 5)
+```
+
+## Fig6b
+```{r}
+df$EMD_scale <- scale(df$EMD)
+```
+
+```{r}
+p <- ggplot(df,aes(x=reorder(cell,EMD_scale),y=EMD_scale))+geom_bar(stat="identity",size=0.8,color="black",alpha=0.3)+coord_flip()+
+  geom_col(aes(fill = cellclass)) 
+
+image = p + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), legend.title = element_blank(),axis.line = element_line(colour = "black")) 
+
+image
+```
+
+## Fig6c
+```{r}
+(Adult_F_P <- readRDS(file="Adult_Fovea_and_Periphery.rds"))
+```
+```{r}
+FeaturePlot(Adult_F_P,features=c("NES"),reduction = "UMAP",label = TRUE,repel = TRUE,max.cutoff = 25,label.size = 5)
+```
+
+## Fig6d
+```{r}
+df$EMD_scale <- scale(df$EMD)
+```
+
+```{r}
+p <- ggplot(df,aes(x=reorder(cell,EMD_scale),y=EMD_scale))+geom_bar(stat="identity",size=0.8,color="black",alpha=0.3)+coord_flip()+
+  geom_col(aes(fill = cellclass)) 
+
+image = p + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), legend.title = element_blank(),axis.line = element_line(colour = "black")) 
+
+image
+```
+
+## Fig6e
+```{r}
+(Fovea_P0_Adult <- readRDS(file="Fovea_P0_and_Adult.rds"))
+```
+```{r}
+FeaturePlot(Fovea_P0_Adult,features=c("NES"),reduction = "UMAP",label = TRUE,repel = TRUE,max.cutoff = 25,label.size = 5)
+```
+
+## Fig6f
+```{r}
+df$EMD_scale <- scale(df$EMD)
+```
+
+```{r}
+p <- ggplot(df,aes(x=reorder(cell,EMD_scale),y=EMD_scale))+geom_bar(stat="identity",size=0.8,color="black",alpha=0.3)+coord_flip()+
+  geom_col(aes(fill = cellclass)) 
+
+image = p + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), legend.title = element_blank(),axis.line = element_line(colour = "black")) 
+
+image
+```
+
+## Fig6g
+```{r}
+(Periphery_P0_Adult <- readRDS(file="Periphery_P0_and_Adult.rds"))
+```
+```{r}
+FeaturePlot(Periphery_P0_Adult,features=c("NES"),reduction = "UMAP",label = TRUE,repel = TRUE,max.cutoff = 25,label.size = 5)
+```
+
+## Fig6h
+```{r}
+df$EMD_scale <- scale(df$EMD)
+```
+
+```{r}
+p <- ggplot(df,aes(x=reorder(cell,EMD_scale),y=EMD_scale))+geom_bar(stat="identity",size=0.8,color="black",alpha=0.3)+coord_flip()+
+  geom_col(aes(fill = cellclass)) 
+
+image = p + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), legend.title = element_blank(),axis.line = element_line(colour = "black")) 
+
+image
+```
+
+# Fig7
+Fig7a
+```{r}
+(Marmoset_MLCone <- readRDS(file="Marmoset_MLCone.rds"))
+```
+
+```{r}
+DimPlot(Marmoset_MLCone,reduction = "umap",pt.size = 0.5)+theme(aspect.ratio = 1)
+```
+
+# Fig8
+Fig8c
+```{r}
+ligand_target_matrix = readRDS("ligand_target_matrix.rds")
+lr_network = readRDS("lr_network.rds")
+weighted_networks = readRDS("weighted_networks.rds")
+```
+
+```{r}
+p_ligand_target_network = vis_ligand_target %>% make_heatmap_ggplot("Prioritized ligands enriched in foveal MG","Neonatal Fovea enriched DEGs of M/L-Cones", color = "darkblue",legend_position = "bottom", x_axis_position = "top",legend_title = "Scaled Regulatory potential") + scale_fill_gradient2( low = muted("green"),mid = "white",high = muted("darkred"),na.value = "white smoke",breaks = c(-2,0,2)) + theme(axis.text.x = element_text(face = "italic"))
+
+p_ligand_target_network
+```
+
